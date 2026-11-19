@@ -128,7 +128,7 @@ S.push({ short: "Start", title: "Anpfiff", render: () => {
       <h1>25 Millionen Euro brutto. Wie viel bleibt Harry Kane?</h1>
       <p class="lead">Kane ist Stürmer beim FC Bayern. Laut Medienberichten verdient er rund 25 Mio. € im Jahr. Ein Teil davon geht an den Staat. Wohin, und warum?</p>
     </div>
-    <div class="jersey" aria-hidden="true">${jerseySvg()}</div>
+    <figure class="jersey"><img src="kane9.jpg" width="720" height="720" alt="Harry Kane von hinten im roten Trikot des FC Bayern mit der Nummer 9"><figcaption>Foto: <a href="https://commons.wikimedia.org/wiki/File:FC_Red_Bull_Salzburg_gegen_Bayern_M%C3%BCnchen_(2025-01-06_Testspiel)_86.jpg" target="_blank" rel="noopener">Werner100359, Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" target="_blank" rel="noopener">CC BY-SA 4.0</a>, zugeschnitten</figcaption></figure>
   </div>
   <section class="card">
     <h3>Deine Schätzung zuerst</h3>
@@ -436,6 +436,7 @@ S.push({ short: "Abpfiff", title: "Abpfiff", render: () => {
     <li>§ 32a Einkommensteuergesetz (Tarif 2026); Beitragssätze und Beitragsbemessungsgrenzen 2026</li>
     <li>Mindestlohn 2027, Regierungsentwurf Steuerreform 2027 (Grundfreibetrag, Kindergeld), Presseberichte zur Grundsicherung 2027</li>
     <li>Kanes Gehalt: Medienberichte (u. a. Sky Sport, ran.de), keine offiziellen Vereinsangaben</li>
+    <li>Foto Startseite: Werner100359, Wikimedia Commons, „FC Red Bull Salzburg gegen Bayern München (2025-01-06 Testspiel) 86“, Lizenz CC BY-SA 4.0, zugeschnitten</li>
     <li>Toni ist eine ausgedachte Person. Alle Gehaltsrechnungen sind vereinfachte Modellrechnungen.</li>
   </ul><p class="small muted">Bezug: startup.WR 11 Gymnasium Bayern, Kapitel 1.6, Aufgaben 1 bis 6. Materialien hier mit aktuellen Zahlen neu erstellt.</p>
   <div class="btnrow"><button type="button" class="btn ghost" id="resetAll">Alle meine Eingaben löschen</button></div></section>`;
