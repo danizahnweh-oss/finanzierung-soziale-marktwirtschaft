@@ -110,7 +110,7 @@ tr.sum td{font-weight:700}
 .legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.85rem;color:var(--ink-2);margin-top:6px}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
 .chart-svg{width:100%;height:auto;display:block}
-.chart-svg text{fill:var(--ink-2);font-family:var(--font);font-size:12px}
+.chart-svg text{fill:var(--ink-2);font-family:var(--font);font-size:16px}
 
 /* Kennzahlen */
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:12px 0}

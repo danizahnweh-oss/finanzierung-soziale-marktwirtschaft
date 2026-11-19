@@ -8,7 +8,7 @@ const store = {
 
 /* ---------- Format ---------- */
 const nf = (n, d = 0) => n.toLocaleString("de-DE", { minimumFractionDigits: d, maximumFractionDigits: d });
-const eur = (n, d = 2) => nf(n, d) + " €";
+const eur = (n, d = 2) => nf(n, d) + " €";
 const mio = n => nf(n / 1e6, 2) + " Mio. €";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
@@ -56,7 +56,7 @@ const M4 = [ // Bundeshaushalt 2026, Mrd. €
 function bars(data, { unit = " Mrd. €", total = null, top = data.length, cls = "" } = {}) {
   const max = Math.max(...data.map(d => d[1]));
   return `<div class="bars ${cls}">` + data.slice(0, top).map(([l, v], i) => {
-    const w = v / max * 100, pct = total ? ` (${nf(v / total * 100, 1)} %)` : "";
+    const w = v / max * 100, pct = total ? ` (${nf(v / total * 100, 1)} %)` : "";
     return `<div class="bar${i > 3 ? " alt" : ""}"><span class="lab">${esc(l)}</span><span class="track" style="--w:${w.toFixed(1)}"><span class="fill"></span><span class="val">${nf(v, 1)}${unit}${pct}</span></span></div>`;
   }).join("") + `</div>`;
 }
@@ -134,7 +134,7 @@ S.push({ short: "Start", title: "Anpfiff", render: () => {
     <h3>Deine Schätzung zuerst</h3>
     <div class="guess">
       <label for="guess" class="fl">Wie viel Prozent seines Bruttogehalts behält Kane netto?</label>
-      <div class="range-row"><input type="range" id="guess" min="10" max="100" step="1" value="${g}"><span class="out" id="guessOut">${g} %</span></div>
+      <div class="range-row"><input type="range" id="guess" min="10" max="100" step="1" value="${g}"><span class="out" id="guessOut">${g} %</span></div>
       <div class="btnrow"><button type="button" class="btn primary" id="reveal">Auflösen</button></div>
       <div id="revealOut" ${store.get("revealed", false) ? "" : "hidden"}>${revealHtml()}</div>
     </div>
@@ -149,7 +149,7 @@ function revealHtml() {
   const p = KANE.net / KANE.J * 100;
   return `<div class="kpis" style="margin-top:14px">
     <div class="kpi"><b>${mio(KANE.net)}</b><span>netto im Jahr <span class="model">Modellrechnung</span></span></div>
-    <div class="kpi"><b>${nf(p, 1)} %</b><span>vom Brutto bleibt</span></div>
+    <div class="kpi"><b>${nf(p, 1)} %</b><span>vom Brutto bleibt</span></div>
     <div class="kpi"><b>${mio(KANE.e + KANE.s)}</b><span>Einkommensteuer und Soli</span></div>
     <div class="kpi"><b>${eur(KANE.sv, 0)}</b><span>Sozialbeiträge (Rente, Arbeitslosigkeit)</span></div>
   </div>
@@ -179,22 +179,22 @@ S.push({ short: "Alltag", title: "Steuern im Alltag", render: () => {
   return `<h2>Steuern zahlst du schon heute</h2>
   <p class="lead">Lohnsteuer zahlen die meisten Schülerinnen und Schüler noch nicht. Beim Einkaufen zahlst du trotzdem Steuern, nur siehst du sie nicht.</p>
   <section class="card"><h3>Dein Wochenkorb</h3><p class="small muted">Stelle ein, was du in einer typischen Woche kaufst. Preise sind Beispielpreise.</p>
-    <div class="basket">${BASKET.map((b, i) => `<div class="item"><span class="nm">${b[0]}<small>${eur(b[1])} · ${b[2] === "fuel" ? "19 % + 65,45 ct Energiesteuer" : (b[2] * 100) + " % USt"}</small></span><span class="counter"><button type="button" data-bk="${i}" data-d="-1" aria-label="weniger ${esc(b[0])}">−</button><output id="bk-${i}">${c[i] || 0}</output><button type="button" data-bk="${i}" data-d="1" aria-label="mehr ${esc(b[0])}">+</button></span></div>`).join("")}</div>
+    <div class="basket">${BASKET.map((b, i) => `<div class="item"><span class="nm">${b[0]}<small>${eur(b[1])} · ${b[2] === "fuel" ? "19 % + 65,45 ct Energiesteuer" : (b[2] * 100) + " % USt"}</small></span><span class="counter"><button type="button" data-bk="${i}" data-d="-1" aria-label="weniger ${esc(b[0])}">−</button><output id="bk-${i}">${c[i] || 0}</output><button type="button" data-bk="${i}" data-d="1" aria-label="mehr ${esc(b[0])}">+</button></span></div>`).join("")}</div>
     <div class="kpis" id="basketOut"></div>
   </section>
   <section class="card flat"><h3>Und Kane?</h3>
-    <p>Kane tankt seinen Wagen mit 80 Litern Benzin. Er zahlt <b>52,36 € Energiesteuer</b>, genau so viel wie jeder andere für 80 Liter. Umsatz- und Energiesteuer hängen nicht vom Einkommen ab, sondern vom Konsum.</p>
-    <p class="small muted">Steuersätze 2026: Umsatzsteuer 19 %, ermäßigt 7 % (u. a. Lebensmittel, Bücher, Nahverkehr, seit 2026 auch Speisen im Restaurant). Energiesteuer Benzin 65,45 ct/l, Diesel 47,04 ct/l. Stromsteuer 2,05 ct/kWh.</p>
+    <p>Kane tankt seinen Wagen mit 80 Litern Benzin. Er zahlt <b>52,36 € Energiesteuer</b>, genau so viel wie jeder andere für 80 Liter. Umsatz- und Energiesteuer hängen nicht vom Einkommen ab, sondern vom Konsum.</p>
+    <p class="small muted">Steuersätze 2026: Umsatzsteuer 19 %, ermäßigt 7 % (u. a. Lebensmittel, Bücher, Nahverkehr, seit 2026 auch Speisen im Restaurant). Energiesteuer Benzin 65,45 ct/l, Diesel 47,04 ct/l. Stromsteuer 2,05 ct/kWh.</p>
   </section>
   ${writeTask("a1", 1, `<span class="op">Nenne</span> die Steuern, die du selbst bezahlst, und gib die Steuersätze an. <span class="op">Schätze</span>, wie viel du in der letzten Woche zum Steueraufkommen beigetragen hast, und vergleiche mit Harry Kane.`,
     `Denk an alles, was du kaufst oder nutzt: Essen, Kleidung, Handy, Tanken, Strom zu Hause. Der Wochenkorb oben liefert dir die Zahl für die Schätzung. Für den Vergleich: Welche Steuer zahlt Kane, die du (noch) nicht zahlst?`,
-    `<p>Ich zahle vor allem <b>indirekte Steuern</b>, die im Preis stecken: die <b>Umsatzsteuer</b> mit 19 % (z. B. Kleidung, Energydrinks, Handyguthaben) oder ermäßigt 7 % (z. B. Lebensmittel, Bücher, Busfahrten), die <b>Energiesteuer</b> beim Tanken (65,45 Cent je Liter Benzin) und über die Stromrechnung der Familie die Stromsteuer. Lohn- oder Einkommensteuer zahle ich nicht, weil mein Einkommen unter dem Grundfreibetrag von 12.348 € liegt.</p><p>Schätzung: Bei rund 60 € Ausgaben pro Woche stecken etwa 6 bis 9 € Umsatzsteuer darin, mit Tanken kommen ein paar Euro Energiesteuer dazu.</p><p>Kane zahlt beim Einkaufen dieselben Sätze, durch seinen höheren Konsum aber absolut mehr. Der weitaus größte Teil seiner Steuerlast ist jedoch die <b>Einkommensteuer</b> (rund 11 Mio. € im Jahr). Erwachsene mit hohem Einkommen tragen also viel mehr zum Steueraufkommen bei als Jugendliche.</p>`,
+    `<p>Ich zahle vor allem <b>indirekte Steuern</b>, die im Preis stecken: die <b>Umsatzsteuer</b> mit 19 % (z. B. Kleidung, Energydrinks, Handyguthaben) oder ermäßigt 7 % (z. B. Lebensmittel, Bücher, Busfahrten), die <b>Energiesteuer</b> beim Tanken (65,45 Cent je Liter Benzin) und über die Stromrechnung der Familie die Stromsteuer. Lohn- oder Einkommensteuer zahle ich nicht, weil mein Einkommen unter dem Grundfreibetrag von 12.348 € liegt.</p><p>Schätzung: Bei rund 60 € Ausgaben pro Woche stecken etwa 6 bis 9 € Umsatzsteuer darin, mit Tanken kommen ein paar Euro Energiesteuer dazu.</p><p>Kane zahlt beim Einkaufen dieselben Sätze, durch seinen höheren Konsum aber absolut mehr. Der weitaus größte Teil seiner Steuerlast ist jedoch die <b>Einkommensteuer</b> (rund 11 Mio. € im Jahr). Erwachsene mit hohem Einkommen tragen also viel mehr zum Steueraufkommen bei als Jugendliche.</p>`,
     ["mindestens zwei Steuerarten mit Steuersatz genannt?", "eine Zahl für deine Woche geschätzt und begründet?", "erklärt, warum du (noch) keine Einkommensteuer zahlst?", "Kane mit dir verglichen (Konsumsteuern gleich, Einkommensteuer verschieden)?"])}`;
 }, after: () => updateBasket() });
 function updateBasket() {
   const el = document.getElementById("basketOut"); if (!el) return;
   const r = basketCalc(store.get("basket", {}));
-  el.innerHTML = `<div class="kpi"><b>${eur(r.sum)}</b><span>ausgegeben</span></div><div class="kpi"><b>${eur(r.ust)}</b><span>davon Umsatzsteuer</span></div><div class="kpi"><b>${eur(r.en)}</b><span>davon Energiesteuer</span></div><div class="kpi"><b>${r.sum ? nf((r.ust + r.en) / r.sum * 100, 1) : "0"} %</b><span>Steueranteil am Einkauf</span></div>`;
+  el.innerHTML = `<div class="kpi"><b>${eur(r.sum)}</b><span>ausgegeben</span></div><div class="kpi"><b>${eur(r.ust)}</b><span>davon Umsatzsteuer</span></div><div class="kpi"><b>${eur(r.en)}</b><span>davon Energiesteuer</span></div><div class="kpi"><b>${r.sum ? nf((r.ust + r.en) / r.sum * 100, 1) : "0"} %</b><span>Steueranteil am Einkauf</span></div>`;
 }
 
 /* 2 Steuer oder Beitrag */
@@ -213,7 +213,7 @@ S.push({ short: "Abzüge", title: "Steuer oder Beitrag?", render: () => {
   return `<h2>Zwei Gehaltszettel, zwei Welten</h2>
   <p class="lead">Toni ist Zeugwart beim FC Bayern (ausgedachtes Beispiel). Er wäscht Kanes Trikots. Vergleiche die Abzüge.</p>
   <div class="grid2">
-    ${material("M2a", "Toni, Zeugwart: Gehalt pro Monat", `<p class="small muted">ledig, kinderlos, Bayern, Kirchensteuer 8 %</p><div class="tbl-wrap"><table><tbody>${slipRows(TONI)}</tbody></table></div>`, "Vereinfachte Berechnung nach Tarif und Beitragssätzen 2026 (KV inkl. halbem Ø-Zusatzbeitrag, PV inkl. Kinderlosenzuschlag).", "model")}
+    ${material("M2a", "Toni, Zeugwart: Gehalt pro Monat", `<p class="small muted">ledig, kinderlos, Bayern, Kirchensteuer 8 %</p><div class="tbl-wrap"><table><tbody>${slipRows(TONI)}</tbody></table></div>`, "Vereinfachte Berechnung nach Tarif und Beitragssätzen 2026 (KV inkl. halbem Ø-Zusatzbeitrag, PV inkl. Kinderlosenzuschlag).", "model")}
     ${material("M2b", "Harry Kane: Gehalt pro Monat", `<p class="small muted">Gehalt laut Medien, ledig, ohne Kirchensteuer, privat krankenversichert</p><div class="tbl-wrap"><table><tbody>${slipRows(KANE)}</tbody></table></div>`, "Gehalt: Medienberichte (Sky, ran), ca. 25 Mio. € pro Jahr. Krankenversicherung privat, deshalb hier 0.", "model")}
   </div>
   <section class="card"><h3>Wohin geht das Bruttogehalt?</h3>
@@ -221,7 +221,7 @@ S.push({ short: "Abzüge", title: "Steuer oder Beitrag?", render: () => {
     <p class="small" style="margin:8px 0 0">Kane</p>${stack(KANE)}
     <div class="legend"><span><i style="background:var(--c-tax)"></i>Steuern</span><span><i style="background:var(--c-sv)"></i>Sozialbeiträge</span><span><i style="background:var(--c-net)"></i>Netto</span></div>
     <p style="margin-top:12px"><b>Leitfrage:</b> Warum zahlt Kane prozentual viel mehr Steuern, aber fast keine Sozialbeiträge?</p>
-    <details class="tip"><summary>Erklärung aufklappen</summary><div class="tip-body"><p>Sozialbeiträge werden nur bis zur <b>Beitragsbemessungsgrenze</b> berechnet: 2026 in der Renten- und Arbeitslosenversicherung bis 101.400 € im Jahr, in Kranken- und Pflegeversicherung bis 69.750 €. Jeder Euro darüber ist beitragsfrei. Die Einkommensteuer dagegen steigt <b>progressiv</b> mit dem Einkommen.</p></div></details>
+    <details class="tip"><summary>Erklärung aufklappen</summary><div class="tip-body"><p>Sozialbeiträge werden nur bis zur <b>Beitragsbemessungsgrenze</b> berechnet: 2026 in der Renten- und Arbeitslosenversicherung bis 101.400 € im Jahr, in Kranken- und Pflegeversicherung bis 69.750 €. Jeder Euro darüber ist beitragsfrei. Die Einkommensteuer dagegen steigt <b>progressiv</b> mit dem Einkommen.</p></div></details>
   </section>
   <section class="card"><h3>Rechne selbst: dein späteres Gehalt</h3>
     <label class="fl" for="brutto">Bruttogehalt pro Monat</label>
@@ -237,18 +237,18 @@ S.push({ short: "Abzüge", title: "Steuer oder Beitrag?", render: () => {
     ["Wird zwischen Arbeitnehmer und Arbeitgeber etwa hälftig geteilt.", 1],
     ["Steigt mit dem Einkommen ohne Obergrenze.", 0],
     ["Umsatzsteuer auf Kanes neue Fußballschuhe", 0],
-    ["9,3 % von Tonis Lohn für die Rentenkasse", 1]
+    ["9,3 % von Tonis Lohn für die Rentenkasse", 1]
   ])}</section>
   ${writeTask("a2", 2, `<span class="op">Grenze</span> Steuern grundsätzlich von Beiträgen zur Sozialversicherung <span class="op">ab</span>. Nutze die Gehaltszettel von Toni und Kane als Beispiele.`,
     `Zwei Fragen helfen: Bekomme ich für meine Zahlung eine bestimmte Gegenleistung? Und wofür darf der Staat bzw. die Versicherung das Geld verwenden? Ein Satz zur Beitragsbemessungsgrenze macht die Antwort stark.`,
-    `<p><b>Steuern</b> sind Zwangsabgaben an den Staat, für die man <b>keine direkte Gegenleistung</b> erhält. Sie fließen in den allgemeinen Haushalt und dürfen für alle Staatsaufgaben verwendet werden (Nonaffektationsprinzip). Die Einkommensteuer richtet sich nach der <b>Leistungsfähigkeit</b>: Wer mehr verdient, zahlt einen höheren Anteil. Kane zahlt deshalb etwa 47 % seines Bruttos an Steuern, Toni etwa 12,5 %.</p><p><b>Sozialversicherungsbeiträge</b> sind ebenfalls Pflicht, begründen aber einen <b>Anspruch auf zweckgebundene Leistungen</b>, etwa Rente, Arbeitslosengeld oder Krankenbehandlung. Sie werden meist hälftig von Arbeitnehmer und Arbeitgeber getragen und nur bis zur Beitragsbemessungsgrenze erhoben. Deshalb zahlt Toni rund 22 % seines Bruttos, Kane nur einen winzigen Bruchteil.</p><p>Beide Abgaben finanzieren den Sozialstaat. In der Sozialversicherung findet zusätzlich eine Umverteilung statt, z. B. erhalten in der Krankenversicherung alle die gleiche Behandlung, auch wenn sie unterschiedlich hohe Beiträge zahlen (Solidaritätsprinzip).</p>`,
+    `<p><b>Steuern</b> sind Zwangsabgaben an den Staat, für die man <b>keine direkte Gegenleistung</b> erhält. Sie fließen in den allgemeinen Haushalt und dürfen für alle Staatsaufgaben verwendet werden (Nonaffektationsprinzip). Die Einkommensteuer richtet sich nach der <b>Leistungsfähigkeit</b>: Wer mehr verdient, zahlt einen höheren Anteil. Kane zahlt deshalb etwa 47 % seines Bruttos an Steuern, Toni etwa 12,5 %.</p><p><b>Sozialversicherungsbeiträge</b> sind ebenfalls Pflicht, begründen aber einen <b>Anspruch auf zweckgebundene Leistungen</b>, etwa Rente, Arbeitslosengeld oder Krankenbehandlung. Sie werden meist hälftig von Arbeitnehmer und Arbeitgeber getragen und nur bis zur Beitragsbemessungsgrenze erhoben. Deshalb zahlt Toni rund 22 % seines Bruttos, Kane nur einen winzigen Bruchteil.</p><p>Beide Abgaben finanzieren den Sozialstaat. In der Sozialversicherung findet zusätzlich eine Umverteilung statt, z. B. erhalten in der Krankenversicherung alle die gleiche Behandlung, auch wenn sie unterschiedlich hohe Beiträge zahlen (Solidaritätsprinzip).</p>`,
     ["die fehlende Gegenleistung bei Steuern genannt?", "den Leistungsanspruch bei Beiträgen genannt?", "Zweckbindung bzw. allgemeiner Haushalt unterschieden?", "Toni und Kane als Beispiel genutzt (Progression, Beitragsbemessungsgrenze)?"])}`;
 }, after: () => updateBrutto() });
 function updateBrutto() {
   const i = document.getElementById("brutto"); if (!i) return;
   const b = +i.value, p = payroll(b);
   document.getElementById("bruttoOut").textContent = eur(b, 0);
-  document.getElementById("bruttoRes").innerHTML = stack(p) + `<div class="kpis"><div class="kpi"><b>${eur(p.tax / 12)}</b><span>Steuern (${nf(p.tax / p.J * 100, 1)} %)</span></div><div class="kpi"><b>${eur(p.sv / 12)}</b><span>Sozialbeiträge (${nf(p.sv / p.J * 100, 1)} %)</span></div><div class="kpi"><b>${eur(p.net / 12)}</b><span>Netto</span></div></div><p class="small muted">Vereinfachte Modellrechnung 2026, ledig, kinderlos, Bayern, gesetzlich versichert, mit Kirchensteuer. Schiebe über 8.450 €: Was passiert mit dem Anteil der Sozialbeiträge?</p>`;
+  document.getElementById("bruttoRes").innerHTML = stack(p) + `<div class="kpis"><div class="kpi"><b>${eur(p.tax / 12)}</b><span>Steuern (${nf(p.tax / p.J * 100, 1)} %)</span></div><div class="kpi"><b>${eur(p.sv / 12)}</b><span>Sozialbeiträge (${nf(p.sv / p.J * 100, 1)} %)</span></div><div class="kpi"><b>${eur(p.net / 12)}</b><span>Netto</span></div></div><p class="small muted">Vereinfachte Modellrechnung 2026, ledig, kinderlos, Bayern, gesetzlich versichert, mit Kirchensteuer. Schiebe über 8.450 €: Was passiert mit dem Anteil der Sozialbeiträge?</p>`;
 }
 
 /* 3 Tarif */
@@ -259,25 +259,25 @@ S.push({ short: "Tarif", title: "Der Einkommensteuertarif", render: () => {
   <section class="card">
     <label class="fl" for="zve">Zu versteuerndes Einkommen pro Jahr</label>
     <div class="range-row"><input type="range" id="zve" min="0" max="320000" step="1000" value="${Math.min(v, 320000)}"><span class="out" id="zveOut"></span></div>
-    <div class="btnrow"><button type="button" class="btn sm" data-zve="30000">Berufseinstieg 30.000 €</button><button type="button" class="btn sm" data-zve="${Math.round(TONI.zve)}">Toni</button><button type="button" class="btn sm" data-zve="25000000">Kane</button></div>
+    <div class="btnrow"><button type="button" class="btn sm" data-zve="30000">Berufseinstieg 30.000 €</button><button type="button" class="btn sm" data-zve="${Math.round(TONI.zve)}">Toni</button><button type="button" class="btn sm" data-zve="25000000">Kane</button></div>
     <div class="kpis" id="zveRes"></div>
     <svg class="chart-svg" id="tarifChart" viewBox="0 0 640 260" role="img" aria-label="Durchschnitts- und Grenzsteuersatz 2026"></svg>
     <div class="legend"><span><i style="background:var(--accent)"></i>Grenzsteuersatz (auf den letzten Euro)</span><span><i style="background:var(--c-sv)"></i>Durchschnittssteuersatz (auf das ganze Einkommen)</span></div>
     <div class="zones" id="zones">
-      <div class="zone" data-z="0"><b>Nullzone</b>bis 12.348 €: 0 %. Grundfreibetrag sichert das Existenzminimum.</div>
-      <div class="zone" data-z="1"><b>Progressionszone</b>12.349 bis 69.878 €: Grenzsatz steigt von 14 % auf 42 %.</div>
-      <div class="zone" data-z="2"><b>1. Proportionalzone</b>69.879 bis 277.825 €: Spitzensteuersatz 42 %.</div>
-      <div class="zone" data-z="3"><b>2. Proportionalzone</b>ab 277.826 €: „Reichensteuer“ 45 %. Leistungsanreiz bleibt.</div>
+      <div class="zone" data-z="0"><b>Nullzone</b>bis 12.348 €: 0 %. Grundfreibetrag sichert das Existenzminimum.</div>
+      <div class="zone" data-z="1"><b>Progressionszone</b>12.349 bis 69.878 €: Grenzsatz steigt von 14 % auf 42 %.</div>
+      <div class="zone" data-z="2"><b>1. Proportionalzone</b>69.879 bis 277.825 €: Spitzensteuersatz 42 %.</div>
+      <div class="zone" data-z="3"><b>2. Proportionalzone</b>ab 277.826 €: „Reichensteuer“ 45 %. Leistungsanreiz bleibt.</div>
     </div>
     <p class="source">Tarif nach § 32a EStG für 2026, ohne Solidaritätszuschlag und Kirchensteuer.</p>
   </section>
   <section class="card flat"><h3>Verdient Kane nur mit Fußball?</h3>
-    <p>Zum <b>Einkommen</b> zählt nicht nur der Lohn aus nichtselbstständiger Arbeit. Auch Werbeverträge, Mieten aus Immobilien oder Gewinne aus Aktien sind Einkünfte. Kapitalerträge wie Dividenden werden meist pauschal mit 25 % Abgeltungsteuer belegt.</p>
+    <p>Zum <b>Einkommen</b> zählt nicht nur der Lohn aus nichtselbstständiger Arbeit. Auch Werbeverträge, Mieten aus Immobilien oder Gewinne aus Aktien sind Einkünfte. Kapitalerträge wie Dividenden werden meist pauschal mit 25 % Abgeltungsteuer belegt.</p>
   </section>
   <section class="card"><h3>Kurz geprüft</h3>${quiz("tarif", [
-    { q: "Toni verdient 1.000 € mehr im Jahr. Welcher Steuersatz zeigt, wie viel davon an den Staat geht?", o: ["Der Durchschnittssteuersatz", "Der Grenzsteuersatz", "Der Eingangssteuersatz"], a: 1, e: "Der Grenzsteuersatz gilt für den zusätzlichen Euro." },
-    { q: "Warum ist ein Einkommen bis 12.348 € steuerfrei?", o: ["Damit Geringverdiener mehr konsumieren", "Das Existenzminimum soll nicht besteuert werden", "Weil der Staat die Steuer nicht eintreiben kann"], a: 1, e: "Der Grundfreibetrag schützt das Existenzminimum." },
-    { q: "Kane zahlt Spitzensätze. Liegt sein Durchschnittssteuersatz bei 45 %?", o: ["Ja, genau 45 %", "Knapp darunter, weil die ersten Euro niedriger besteuert werden", "Deutlich darüber"], a: 1, e: "Bei 25 Mio. € liegt der Durchschnittssatz bei etwa 44,9 % (ohne Soli)." },
+    { q: "Toni verdient 1.000 € mehr im Jahr. Welcher Steuersatz zeigt, wie viel davon an den Staat geht?", o: ["Der Durchschnittssteuersatz", "Der Grenzsteuersatz", "Der Eingangssteuersatz"], a: 1, e: "Der Grenzsteuersatz gilt für den zusätzlichen Euro." },
+    { q: "Warum ist ein Einkommen bis 12.348 € steuerfrei?", o: ["Damit Geringverdiener mehr konsumieren", "Das Existenzminimum soll nicht besteuert werden", "Weil der Staat die Steuer nicht eintreiben kann"], a: 1, e: "Der Grundfreibetrag schützt das Existenzminimum." },
+    { q: "Kane zahlt Spitzensätze. Liegt sein Durchschnittssteuersatz bei 45 %?", o: ["Ja, genau 45 %", "Knapp darunter, weil die ersten Euro niedriger besteuert werden", "Deutlich darüber"], a: 1, e: "Bei 25 Mio. € liegt der Durchschnittssatz bei etwa 44,9 % (ohne Soli)." },
     { q: "Kanes Dividenden aus Aktien gehören zu ...", o: ["Einkünften aus Kapitalvermögen", "Einkünften aus nichtselbstständiger Arbeit", "steuerfreien Einnahmen"], a: 0, e: "Dafür fällt meist die Abgeltungsteuer an." }
   ])}</section>`;
 }, after: () => updateZve() });
@@ -285,7 +285,7 @@ function updateZve() {
   const i = document.getElementById("zve"); if (!i) return;
   const x = +i.dataset.override || +i.value, e = est(x), avg = x ? e / x * 100 : 0, mg = (est(x + 1000) - e) / 10;
   document.getElementById("zveOut").textContent = eur(x, 0);
-  document.getElementById("zveRes").innerHTML = `<div class="kpi"><b>${eur(e, 0)}</b><span>Einkommensteuer im Jahr</span></div><div class="kpi"><b>${nf(avg, 1)} %</b><span>Durchschnittssteuersatz</span></div><div class="kpi"><b>${nf(mg, 0)} %</b><span>Grenzsteuersatz</span></div>`;
+  document.getElementById("zveRes").innerHTML = `<div class="kpi"><b>${eur(e, 0)}</b><span>Einkommensteuer im Jahr</span></div><div class="kpi"><b>${nf(avg, 1)} %</b><span>Durchschnittssteuersatz</span></div><div class="kpi"><b>${nf(mg, 0)} %</b><span>Grenzsteuersatz</span></div>`;
   const z = x <= 12348 ? 0 : x <= 69878 ? 1 : x <= 277825 ? 2 : 3;
   document.querySelectorAll(".zone").forEach(el => el.classList.toggle("on", +el.dataset.z === z));
   drawTarif(Math.min(x, 320000));
@@ -296,7 +296,7 @@ function drawTarif(mark) {
   let g = "", a = "";
   for (let v = 0; v <= 320000; v += 2000) { const e = est(v); g += `${v ? "L" : "M"}${X(v).toFixed(1)},${Y(v ? (est(v + 1000) - e) / 10 : 0).toFixed(1)}`; a += `${v ? "L" : "M"}${X(v).toFixed(1)},${Y(v ? e / v * 100 : 0).toFixed(1)}`; }
   let grid = "";
-  [0, 14, 30, 42, 45].forEach(p => grid += `<line x1="${L}" x2="${W - R}" y1="${Y(p)}" y2="${Y(p)}" stroke="var(--line)"/><text x="${L - 6}" y="${Y(p) + 4}" text-anchor="end">${p} %</text>`);
+  [0, 14, 24, 42].forEach(p => grid += `<line x1="${L}" x2="${W - R}" y1="${Y(p)}" y2="${Y(p)}" stroke="var(--line)"/><text x="${L - 6}" y="${Y(p) + 4}" text-anchor="end">${p} %</text>`);
   [0, 100000, 200000, 300000].forEach(v => grid += `<text x="${X(v)}" y="${H - 8}" text-anchor="middle">${v / 1000} T€</text>`);
   svg.innerHTML = grid + `<path d="${g}" fill="none" stroke="var(--accent)" stroke-width="3"/><path d="${a}" fill="none" stroke="var(--c-sv)" stroke-width="3"/><line x1="${X(mark)}" x2="${X(mark)}" y1="${T}" y2="${H - B}" stroke="var(--ink)" stroke-dasharray="4 4"/>`;
 }
@@ -308,7 +308,7 @@ S.push({ short: "M1", title: "Steuereinnahmen", render: () => {
   <p class="lead">2025 haben Bund, Länder und Gemeinden zusammen <b>989,8 Mrd. €</b> Steuern eingenommen, so viel wie nie zuvor.</p>
   ${material("M1", "Steuereinnahmen 2025 in Mrd. €", bars(M1, { total: tot }), "Quelle: Bundesministerium der Finanzen, Steuereinnahmen 4. Quartal und Gesamtjahr 2025 (29.01.2026); Statistisches Bundesamt. Gemeindesteuern teils als Restgröße berechnet.")}
   <section class="card"><h3>Lies die Statistik</h3>${quiz("m1", [
-    { q: "Welche zwei Steuern bringen zusammen mehr als die Hälfte aller Einnahmen?", o: ["Gewerbe- und Körperschaftsteuer", "Umsatzsteuer und Lohnsteuer", "Energie- und Tabaksteuer"], a: 1, e: "310,2 + 262,7 = 572,9 Mrd. €, das sind rund 58 %." },
+    { q: "Welche zwei Steuern bringen zusammen mehr als die Hälfte aller Einnahmen?", o: ["Gewerbe- und Körperschaftsteuer", "Umsatzsteuer und Lohnsteuer", "Energie- und Tabaksteuer"], a: 1, e: "310,2 + 262,7 = 572,9 Mrd. €, das sind rund 58 %." },
     { q: "Wer zahlt die Umsatzsteuer letztlich?", o: ["Die Unternehmen", "Die Verbraucherinnen und Verbraucher beim Kauf", "Nur Reiche"], a: 1, e: "Unternehmen führen sie ab, getragen wird sie von den Konsumenten." },
     { q: "Kane zahlt rund 11,2 Mio. € Einkommensteuer. In welchem Balken steckt dieses Geld?", o: ["Lohnsteuer", "Gewerbesteuer", "Abgeltungsteuer"], a: 0, e: "Bei Arbeitnehmern wird die Einkommensteuer als Lohnsteuer direkt vom Gehalt abgezogen." }
   ])}</section>`;
@@ -323,7 +323,7 @@ S.push({ short: "M3", title: "Das Sozialbudget", render: () => {
     <tr><td>Sozialversicherungssysteme<br><span class="small muted">Rente, Kranken-, Pflege-, Unfall-, Arbeitslosenversicherung</span></td><td>866,9</td><td>378,8</td><td>327,4</td><td>144,8</td></tr>
     <tr><td>Förder- und Fürsorgesysteme<br><span class="small muted">u. a. Kindergeld, Bürgergeld, Sozialhilfe, Jugendhilfe, Wohngeld</span></td><td>279,6</td><td>-</td><td>-</td><td>278,7</td></tr>
     <tr><td colspan="5" class="small muted" style="text-align:left">...</td></tr></tbody></table></div>
-    <div class="kpis"><div class="kpi"><b>32,0 %</b><span>der Wirtschaftsleistung (BIP) sind Sozialleistungen</span></div><div class="kpi"><b>57,5 Mrd. €</b><span>Bürgergeld 2025</span></div><div class="kpi"><b>124,8 Mrd. €</b><span>Zuschüsse des Staates an die Rentenversicherung</span></div></div>
+    <div class="kpis"><div class="kpi"><b>32,0 %</b><span>der Wirtschaftsleistung (BIP) sind Sozialleistungen</span></div><div class="kpi"><b>57,5 Mrd. €</b><span>Bürgergeld 2025</span></div><div class="kpi"><b>124,8 Mrd. €</b><span>Zuschüsse des Staates an die Rentenversicherung</span></div></div>
     <p class="small muted">Die Finanzierung (1.488 Mrd. €) ist etwas höher als die Leistungen, Restbeträge sind sonstige Einnahmen. Arbeitgeberbeiträge enthalten auch „unterstellte“ Beiträge, z. B. Lohnfortzahlung im Krankheitsfall.</p>`,
     "Quelle: Bundesministerium für Arbeit und Soziales, Sozialbudget 2025, Tabelle III-1 (Datenstand Mai 2026, Werte geschätzt).")}
   <section class="card"><h3>Finanzierung im Überblick</h3>
@@ -347,7 +347,7 @@ S.push({ short: "M4", title: "Der Bundeshaushalt", render: () => {
   return `<h2>Wofür gibt der Bund Geld aus?</h2>
   <p class="lead">Der Bundeshaushalt 2026 umfasst <b>524,5 Mrd. €</b>. Davon stammen 387,2 Mrd. € aus Steuern und 98,0 Mrd. € aus neuen Krediten.</p>
   ${material("M4", "Bundeshaushalt 2026: Ausgaben der Ressorts in Mrd. €", bars(M4, { total: 524.5 }), "Quelle: Bundesministerium der Finanzen, Eckwertebeschluss zum Bundeshaushalt 2027, Anlage 3 (Soll 2026). Verteidigung zusätzlich 25,5 Mrd. € aus dem Sondervermögen Bundeswehr. Aktuelle Zahlen: bundeshaushalt.de")}
-  <section class="card flat"><p style="margin:0">Knapp 70 % des Etats für Arbeit und Soziales sind <b>Zuschüsse an die Rentenversicherung</b>. Dazu kommen u. a. Grundsicherung (Bürgergeld) und Arbeitsförderung. 2027 sollen die Ausgaben auf 543,3 Mrd. € steigen.</p></section>
+  <section class="card flat"><p style="margin:0">Knapp 70 % des Etats für Arbeit und Soziales sind <b>Zuschüsse an die Rentenversicherung</b>. Dazu kommen u. a. Grundsicherung (Bürgergeld) und Arbeitsförderung. 2027 sollen die Ausgaben auf 543,3 Mrd. € steigen.</p></section>
   <section class="card"><h3>Welches Prinzip der Sozialen Marktwirtschaft steckt dahinter?</h3>
   <p class="small muted">Solidarität: Die Gemeinschaft hilft dem Einzelnen. Subsidiarität: Hilfe zur Selbsthilfe, zuerst Eigenverantwortung und Familie, der Staat springt nachrangig ein.</p>
   ${assign("prinzip", ["Solidarität", "Subsidiarität"], [
@@ -360,26 +360,26 @@ S.push({ short: "M4", title: "Der Bundeshaushalt", render: () => {
   ])}</section>
   ${writeTask("a4", 4, `<span class="op">Analysiere</span> den aktuellen Bundeshaushalt (M4) im Hinblick auf die Merkmale der Sozialen Marktwirtschaft. Wer mag, recherchiert die neuesten Zahlen auf <a href="https://www.bundeshaushalt.de" target="_blank" rel="noopener">bundeshaushalt.de</a>.`,
     `Suche dir zwei bis drei große Ressorts heraus. Frage jeweils: Hilft hier die Gemeinschaft den Schwächeren (Solidarität)? Soll jemand befähigt werden, sich selbst zu helfen (Subsidiarität)? Sichert der Staat den Wettbewerb und den Rahmen der Marktwirtschaft?`,
-    `<p>Der Bundeshaushalt 2026 zeigt deutlich den Charakter eines <b>Sozialstaats</b>: Mit 197,3 Mrd. € (37,6 %) ist „Arbeit und Soziales“ mit Abstand der größte Posten.</p><p><b>Solidaritätsprinzip:</b> Der größte Teil davon sind Zuschüsse an die Rentenversicherung. Die Steuerzahler stützen damit die Rentner, deren Renten nicht allein aus Beiträgen finanziert werden können. Auch die Grundsicherung für Menschen ohne ausreichendes Einkommen und die Zuschüsse an die Krankenkassen im Etat Gesundheit (21,8 Mrd.) zeigen: Die Gemeinschaft sichert den Einzelnen gegen Notlagen ab.</p><p><b>Subsidiaritätsprinzip:</b> Mittel für Weiterbildung, Umschulung und Arbeitsvermittlung sollen Arbeitslose befähigen, wieder selbst für ihren Lebensunterhalt zu sorgen (Hilfe zur Selbsthilfe). Familienleistungen wie Elterngeld stärken die Familie als erste Hilfeinstanz, BAföG und Bildungsausgaben fördern Eigenverantwortung.</p><p>Daneben finanziert der Haushalt den <b>Ordnungsrahmen</b> (Inneres, Justiz) und öffentliche Güter (Verkehr, Verteidigung, Forschung). Steigende Zinsausgaben (33,6 Mrd.) engen künftige soziale Spielräume ein.</p>`,
+    `<p>Der Bundeshaushalt 2026 zeigt deutlich den Charakter eines <b>Sozialstaats</b>: Mit 197,3 Mrd. € (37,6 %) ist „Arbeit und Soziales“ mit Abstand der größte Posten.</p><p><b>Solidaritätsprinzip:</b> Der größte Teil davon sind Zuschüsse an die Rentenversicherung. Die Steuerzahler stützen damit die Rentner, deren Renten nicht allein aus Beiträgen finanziert werden können. Auch die Grundsicherung für Menschen ohne ausreichendes Einkommen und die Zuschüsse an die Krankenkassen im Etat Gesundheit (21,8 Mrd.) zeigen: Die Gemeinschaft sichert den Einzelnen gegen Notlagen ab.</p><p><b>Subsidiaritätsprinzip:</b> Mittel für Weiterbildung, Umschulung und Arbeitsvermittlung sollen Arbeitslose befähigen, wieder selbst für ihren Lebensunterhalt zu sorgen (Hilfe zur Selbsthilfe). Familienleistungen wie Elterngeld stärken die Familie als erste Hilfeinstanz, BAföG und Bildungsausgaben fördern Eigenverantwortung.</p><p>Daneben finanziert der Haushalt den <b>Ordnungsrahmen</b> (Inneres, Justiz) und öffentliche Güter (Verkehr, Verteidigung, Forschung). Steigende Zinsausgaben (33,6 Mrd.) engen künftige soziale Spielräume ein.</p>`,
     ["den Sozialetat als größten Posten mit Zahl genannt?", "mindestens ein Beispiel für Solidarität erklärt?", "mindestens ein Beispiel für Subsidiarität erklärt?", "einen weiteren Aspekt (Ordnungsrahmen, Schulden) erwähnt?"])}`;
 }});
 
 /* 7 Änderungen */
 S.push({ short: "M5", title: "Was sich 2027 ändert", render: () => {
   const ch = [
-    ["Mindestlohn", "13,90 €", "14,60 €", "+0,70 € pro Stunde", "fix", "beschlossen"],
-    ["Grundfreibetrag Einkommensteuer", "12.348 €", "12.564 €", "+216 € pro Jahr", "plan", "Regierungsentwurf"],
-    ["Kindergeld", "259 €", "267 €", "+8 € pro Kind und Monat", "plan", "Regierungsentwurf"],
-    ["Grundsicherung (früher Bürgergeld), Erwachsene", "563 €", "563 €", "Nullrunde, Umbau zur „Neuen Grundsicherung“", "plan", "voraussichtlich"]
+    ["Mindestlohn", "13,90 €", "14,60 €", "+0,70 € pro Stunde", "fix", "beschlossen"],
+    ["Grundfreibetrag Einkommensteuer", "12.348 €", "12.564 €", "+216 € pro Jahr", "plan", "Regierungsentwurf"],
+    ["Kindergeld", "259 €", "267 €", "+8 € pro Kind und Monat", "plan", "Regierungsentwurf"],
+    ["Grundsicherung (früher Bürgergeld), Erwachsene", "563 €", "563 €", "Nullrunde, Umbau zur „Neuen Grundsicherung“", "plan", "voraussichtlich"]
   ];
   return `<h2>Das ändert sich für Verbraucher</h2>
-  <p class="lead">Zum 1. Januar 2027 ändern sich wichtige Werte. Rückblick 2025 auf 2026: Mindestlohn 12,82 auf 13,90 €, Grundfreibetrag 12.096 auf 12.348 €, Kindergeld 255 auf 259 €.</p>
+  <p class="lead">Zum 1. Januar 2027 ändern sich wichtige Werte. Rückblick 2025 auf 2026: Mindestlohn 12,82 auf 13,90 €, Grundfreibetrag 12.096 auf 12.348 €, Kindergeld 255 auf 259 €.</p>
   ${material("M5", "Änderungen 2026 auf 2027", `<div class="changes">${ch.map(c => `<div class="change"><div class="small muted">${c[0]}</div><div class="from-to">${c[1]} → ${c[2]}</div><span class="delta">${c[3]}</span><br><span class="status ${c[4]}">${c[5]}</span></div>`).join("")}</div>`,
     "Quellen: Mindestlohnkommission bzw. Mindestlohnanpassungsverordnung; Regierungsentwurf Steuerreform 2027 (Stand Herbst 2026); Angaben zur Grundsicherung 2027 nach Presseberichten, noch nicht endgültig.")}
-  <section class="card flat"><h3>Und Toni, und Kane?</h3><p>Der höhere Grundfreibetrag spart Toni einige Dutzend Euro Einkommensteuer im Jahr. Für Kane ist der Betrag im Verhältnis zu seinem Einkommen bedeutungslos. Ein Mindestlohn-Job mit 40 Stunden pro Woche bringt 2027 etwa 2.530 € brutto im Monat.</p></section>
+  <section class="card flat"><h3>Und Toni, und Kane?</h3><p>Der höhere Grundfreibetrag spart Toni einige Dutzend Euro Einkommensteuer im Jahr. Für Kane ist der Betrag im Verhältnis zu seinem Einkommen bedeutungslos. Ein Mindestlohn-Job mit 40 Stunden pro Woche bringt 2027 etwa 2.530 € brutto im Monat.</p></section>
   ${writeTask("a5", 5, `<span class="op">Erkläre</span>, weshalb die Änderungen für Verbraucher in M5 den grundlegenden Merkmalen der Sozialen Marktwirtschaft entsprechen.`,
     `Ordne jede Änderung einem Merkmal zu: Solidarität, Subsidiarität (Hilfe zur Selbsthilfe), Schutz des Existenzminimums, Familienförderung, Umverteilung. Frage auch: Wer bezahlt die Maßnahme?`,
-    `<p>Die Änderungen in M5 verbinden freien Markt mit sozialem Ausgleich, dem Kern der Sozialen Marktwirtschaft.</p><p>Die Erhöhung des <b>Mindestlohns</b> auf 14,60 € entspricht dem <b>Subsidiaritätsprinzip</b>: Wer arbeitet, soll von seinem Lohn leben können und nicht auf staatliche Hilfe angewiesen sein. Der Staat setzt nur einen Rahmen, die Löhne zahlen die Unternehmen.</p><p>Die <b>Grundsicherung</b> sichert Menschen, die ihren Lebensunterhalt nicht selbst verdienen können, das Existenzminimum (<b>Solidaritätsprinzip</b>). Dass sie 2027 voraussichtlich nicht steigt, zeigt die Spannung zwischen sozialer Sicherheit und Finanzierbarkeit sowie dem Anreiz zur Arbeitsaufnahme.</p><p>Der höhere <b>Grundfreibetrag</b> stellt sicher, dass das Existenzminimum steuerfrei bleibt, auch wenn die Preise steigen. Besteuert wird erst, wer darüber hinaus leistungsfähig ist. Das höhere <b>Kindergeld</b> unterstützt Familien (Familienförderung, sozialer Ausgleich).</p><p>Finanziert werden Grundsicherung und Kindergeld aus Steuern, die vor allem leistungsfähige Bürgerinnen und Bürger wie Kane über die progressive Einkommensteuer und alle über die Umsatzsteuer zahlen. So entsteht Umverteilung.</p>`,
+    `<p>Die Änderungen in M5 verbinden freien Markt mit sozialem Ausgleich, dem Kern der Sozialen Marktwirtschaft.</p><p>Die Erhöhung des <b>Mindestlohns</b> auf 14,60 € entspricht dem <b>Subsidiaritätsprinzip</b>: Wer arbeitet, soll von seinem Lohn leben können und nicht auf staatliche Hilfe angewiesen sein. Der Staat setzt nur einen Rahmen, die Löhne zahlen die Unternehmen.</p><p>Die <b>Grundsicherung</b> sichert Menschen, die ihren Lebensunterhalt nicht selbst verdienen können, das Existenzminimum (<b>Solidaritätsprinzip</b>). Dass sie 2027 voraussichtlich nicht steigt, zeigt die Spannung zwischen sozialer Sicherheit und Finanzierbarkeit sowie dem Anreiz zur Arbeitsaufnahme.</p><p>Der höhere <b>Grundfreibetrag</b> stellt sicher, dass das Existenzminimum steuerfrei bleibt, auch wenn die Preise steigen. Besteuert wird erst, wer darüber hinaus leistungsfähig ist. Das höhere <b>Kindergeld</b> unterstützt Familien (Familienförderung, sozialer Ausgleich).</p><p>Finanziert werden Grundsicherung und Kindergeld aus Steuern, die vor allem leistungsfähige Bürgerinnen und Bürger wie Kane über die progressive Einkommensteuer und alle über die Umsatzsteuer zahlen. So entsteht Umverteilung.</p>`,
     ["den Mindestlohn mit Subsidiarität bzw. Hilfe zur Selbsthilfe verbunden?", "die Grundsicherung mit Solidarität und Existenzminimum verbunden?", "Grundfreibetrag und Kindergeld erklärt?", "die Finanzierung über Steuern angesprochen?"])}`;
 }});
 
@@ -396,8 +396,8 @@ S.push({ short: "Umverteilung", title: "Umverteilung", render: () => {
   <section class="card"><h3>Was Kanes Steuer finanzieren könnte <span class="model">Modellrechnung</span></h3>
     <div class="kpis">
       <div class="kpi"><b>${mio(kt)}</b><span>Kanes Einkommensteuer und Soli pro Jahr</span></div>
-      <div class="kpi"><b>${nf(kt / rs, 0)}</b><span>Jahre Grundsicherung für einen Erwachsenen (563 € × 12)</span></div>
-      <div class="kpi"><b>${nf(kt / (267 * 12), 0)}</b><span>Kinder ein Jahr Kindergeld (267 € × 12)</span></div>
+      <div class="kpi"><b>${nf(kt / rs, 0)}</b><span>Jahre Grundsicherung für einen Erwachsenen (563 € × 12)</span></div>
+      <div class="kpi"><b>${nf(kt / (267 * 12), 0)}</b><span>Kinder ein Jahr Kindergeld (267 € × 12)</span></div>
       <div class="kpi"><b>${nf(kt / (TONI.tax), 0)}</b><span>mal so viel Steuer wie Toni</span></div>
     </div>
     <p class="small muted">Steuern sind nicht zweckgebunden. Die Rechnung zeigt nur Größenordnungen.</p>
@@ -413,7 +413,7 @@ S.push({ short: "Umverteilung", title: "Umverteilung", render: () => {
   ])}</section>
   ${writeTask("a6", 6, `<span class="op">Stelle dar</span>, wie der Staat in der Sozialen Marktwirtschaft versucht, eine Umverteilung zu erreichen (M1 bis M5). Nutze Kane und Toni als Beispiele.`,
     `Gliedere in zwei Teile: 1. Wie nimmt der Staat Geld ein, und wer zahlt wie viel (M1, M2, Tarif)? 2. Wofür gibt er es aus, und wer profitiert (M3, M4, M5)? Ein Satz zum Umfang macht die Darstellung vollständig.`,
-    `<p><b>Einnahmen nach Leistungsfähigkeit:</b> Der Staat finanziert sich vor allem über Steuern (2025: 989,8 Mrd. €, M1). Die Einkommensteuer ist progressiv: Kane zahlt rund 47 % seines Gehalts an Steuern, Toni rund 12,5 % (M2). Wer mehr leisten kann, soll mehr beitragen. Über Konsumsteuern wie Umsatz- und Energiesteuer zahlen alle, wer mehr konsumiert, zahlt mehr. Dazu kommen Sozialbeiträge, die allerdings nur bis zur Beitragsbemessungsgrenze erhoben werden.</p><p><b>Ausgaben nach Bedürftigkeit:</b> Mit diesen Mitteln finanziert der Staat Leistungen für Menschen, die sich nicht selbst helfen können: Grundsicherung, Kindergeld, Zuschüsse zur Rente (M4, M5). Der Umfang ist groß: Das Sozialbudget umfasst 1.431 Mrd. €, davon trägt der Staat 488 Mrd. € (M3); im Bundeshaushalt 2026 entfallen 37,6 % auf Arbeit und Soziales (M4).</p><p><b>Ergebnis:</b> Geld fließt von leistungsfähigen zu bedürftigen Menschen. Allein Kanes Steuer entspricht rechnerisch rund 1.750 Jahren Grundsicherung für einen Erwachsenen. Gleichzeitig setzt der Staat auf Hilfe zur Selbsthilfe (Mindestlohn, Weiterbildung), damit Umverteilung den Leistungsanreiz nicht zerstört.</p>`,
+    `<p><b>Einnahmen nach Leistungsfähigkeit:</b> Der Staat finanziert sich vor allem über Steuern (2025: 989,8 Mrd. €, M1). Die Einkommensteuer ist progressiv: Kane zahlt rund 47 % seines Gehalts an Steuern, Toni rund 12,5 % (M2). Wer mehr leisten kann, soll mehr beitragen. Über Konsumsteuern wie Umsatz- und Energiesteuer zahlen alle, wer mehr konsumiert, zahlt mehr. Dazu kommen Sozialbeiträge, die allerdings nur bis zur Beitragsbemessungsgrenze erhoben werden.</p><p><b>Ausgaben nach Bedürftigkeit:</b> Mit diesen Mitteln finanziert der Staat Leistungen für Menschen, die sich nicht selbst helfen können: Grundsicherung, Kindergeld, Zuschüsse zur Rente (M4, M5). Der Umfang ist groß: Das Sozialbudget umfasst 1.431 Mrd. €, davon trägt der Staat 488 Mrd. € (M3); im Bundeshaushalt 2026 entfallen 37,6 % auf Arbeit und Soziales (M4).</p><p><b>Ergebnis:</b> Geld fließt von leistungsfähigen zu bedürftigen Menschen. Allein Kanes Steuer entspricht rechnerisch rund 1.750 Jahren Grundsicherung für einen Erwachsenen. Gleichzeitig setzt der Staat auf Hilfe zur Selbsthilfe (Mindestlohn, Weiterbildung), damit Umverteilung den Leistungsanreiz nicht zerstört.</p>`,
     ["die Einnahmenseite mit progressiver Steuer erklärt?", "Konsumsteuern und Beiträge erwähnt?", "die Ausgabenseite mit Beispielen aus M3 bis M5 dargestellt?", "den Umfang der Umverteilung mit Zahlen belegt?", "Kane und Toni als Beispiele genutzt?"])}`;
 }});
 
@@ -422,10 +422,10 @@ S.push({ short: "Abpfiff", title: "Abpfiff", render: () => {
   return `<h2>Abpfiff: Teste dich</h2>
   <section class="card">${quiz("final", [
     { q: "Welche Aussage über Sozialversicherungsbeiträge stimmt?", o: ["Sie steigen ohne Obergrenze mit dem Einkommen.", "Sie werden nur bis zur Beitragsbemessungsgrenze erhoben.", "Sie fließen in den allgemeinen Bundeshaushalt."], a: 1, e: "Deshalb zahlt Kane prozentual kaum Beiträge." },
-    { q: "Größter Posten im Bundeshaushalt 2026?", o: ["Verteidigung", "Arbeit und Soziales", "Bundesschuld"], a: 1, e: "197,3 Mrd. €, also 37,6 %." },
+    { q: "Größter Posten im Bundeshaushalt 2026?", o: ["Verteidigung", "Arbeit und Soziales", "Bundesschuld"], a: 1, e: "197,3 Mrd. €, also 37,6 %." },
     { q: "Wer finanziert die Förder- und Fürsorgesysteme (z. B. Kindergeld) fast vollständig?", o: ["Die Arbeitgeber", "Die Versicherten", "Der Staat aus Steuern"], a: 2, e: "278,7 von 279,6 Mrd. € (2025)." },
     { q: "Die Erhöhung des Mindestlohns entspricht vor allem ...", o: ["dem Subsidiaritätsprinzip", "dem Äquivalenzprinzip der Krankenkasse", "dem Prinzip der Planwirtschaft"], a: 0, e: "Wer arbeitet, soll von seinem Lohn leben können: Hilfe zur Selbsthilfe." },
-    { q: "Ein Einkommen bis 12.348 € (2026) ist steuerfrei, weil ...", o: ["das Existenzminimum geschützt wird.", "Kleinverdiener keine Steuererklärung abgeben.", "der Staat genug Geld hat."], a: 0, e: "Grundfreibetrag = Nullzone." },
+    { q: "Ein Einkommen bis 12.348 € (2026) ist steuerfrei, weil ...", o: ["das Existenzminimum geschützt wird.", "Kleinverdiener keine Steuererklärung abgeben.", "der Staat genug Geld hat."], a: 0, e: "Grundfreibetrag = Nullzone." },
     { q: "Was beschreibt Umverteilung in der Sozialen Marktwirtschaft am besten?", o: ["Alle zahlen gleich viel und bekommen gleich viel.", "Einnahmen nach Leistungsfähigkeit, Ausgaben nach Bedürftigkeit.", "Der Staat legt alle Löhne fest."], a: 1, e: "Genau das ist der Kern." }
   ])}</section>
   <section class="card flat"><h3>Quellen</h3><ul class="sources">
