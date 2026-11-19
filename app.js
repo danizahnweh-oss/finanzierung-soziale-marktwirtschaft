@@ -156,10 +156,10 @@ function revealHtml() {
   <p class="small muted">Annahmen: nur Grundgehalt, ledig, keine Kirchensteuer, privat kranken- und pflegeversichert, Tarif 2026. Boni und Werbeeinnahmen fehlen. Fällt dir bei den Sozialbeiträgen etwas auf? Das klären wir in Station 2.</p>`;
 }
 function jerseySvg() {
-  return `<svg viewBox="0 0 200 200" role="img"><circle cx="100" cy="100" r="96" fill="var(--accent-soft)"/>
-  <path d="M62 44 L82 36 Q100 48 118 36 L138 44 L164 66 L150 88 L138 80 L138 160 Q100 168 62 160 L62 80 L50 88 L36 66 Z" fill="var(--accent)"/>
-  <path d="M82 36 Q100 54 118 36" fill="none" stroke="var(--accent-ink)" stroke-width="3"/>
-  <text x="100" y="128" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="62" fill="var(--accent-ink)">9</text></svg>`;
+  return `<svg viewBox="0 0 200 200" role="img"><circle cx="100" cy="100" r="96" fill="var(--surface-2)"/>
+  <path d="M62 44 L82 36 Q100 48 118 36 L138 44 L164 66 L150 88 L138 80 L138 160 Q100 168 62 160 L62 80 L50 88 L36 66 Z" fill="var(--jersey)"/>
+  <path d="M82 36 Q100 54 118 36" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <text x="100" y="128" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="62" fill="#ffffff">9</text></svg>`;
 }
 
 /* 1 Steuern im Alltag */

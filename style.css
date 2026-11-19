@@ -1,7 +1,7 @@
 :root{
   --bg:#f5f5f2; --surface:#ffffff; --surface-2:#ecece7; --ink:#1c1f1d; --ink-2:#4b514d; --line:#d7d8d1;
   --accent:#1d5c3f; --accent-ink:#ffffff; --accent-soft:#dcebe2;
-  --c-tax:#1d5c3f; --c-sv:#c9822b; --c-net:#9aa39d; --c-state:#3c6e8f;
+  --jersey:#d0202e; --c-tax:#1d5c3f; --c-sv:#c9822b; --c-net:#9aa39d; --c-state:#3c6e8f;
   --ok:#1f7a3f; --ok-bg:#e1f2e6; --bad:#b3261e; --bad-bg:#f9e3e1;
   --radius:10px; --shadow:0 1px 2px rgba(20,30,25,.06),0 4px 14px rgba(20,30,25,.05);
   --font:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -11,7 +11,7 @@
   :root{
     --bg:#121513; --surface:#1b1f1c; --surface-2:#242a26; --ink:#e9ece9; --ink-2:#aab2ac; --line:#333a35;
     --accent:#5fb98a; --accent-ink:#0d1a12; --accent-soft:#1f3a2b;
-    --c-tax:#5fb98a; --c-sv:#e0a356; --c-net:#6c756f; --c-state:#79aed0;
+    --jersey:#e0414b; --c-tax:#5fb98a; --c-sv:#e0a356; --c-net:#6c756f; --c-state:#79aed0;
     --ok:#7fd49b; --ok-bg:#183524; --bad:#ff8f86; --bad-bg:#3d1d1b;
     --shadow:none;
   }
